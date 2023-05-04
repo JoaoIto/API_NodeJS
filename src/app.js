@@ -1,7 +1,7 @@
 import express from "express";
 import db from "./config/dbConnect.js";
-// import { books } from "./models/api/books.js";
 import { books } from "./models/Books.js";
+import { routes } from "./routes/index.js"
 
 db.on("error", console.log.bind(console, "Erro de conexão!"));
 db.once("open", () => {
@@ -11,9 +11,7 @@ db.once("open", () => {
 export const app = express();
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.status(200).send("Curso de Node");
-});
+routes(app);
 
 app.get("/books/:id", (req, res) => {
   let index = getBooks(req.params.id);
