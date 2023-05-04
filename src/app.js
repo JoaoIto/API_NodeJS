@@ -1,7 +1,10 @@
 import express from "express";
+import { db } from "./config/dbConnect.js"
 import { books } from "./api/books.js";
-export const app = express();
+import { users } from "./api/users.js";
 
+db.on()
+export const app = express();
 app.use(express.json());
 
 app.get("/", (req, res) => {
