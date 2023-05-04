@@ -1,5 +1,5 @@
 import express from "express";
-import { books } from "./books.js";
+import { books } from "./api/books.js";
 export const app = express();
 
 app.use(express.json());
