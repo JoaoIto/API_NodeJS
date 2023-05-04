@@ -5,3 +5,4 @@ export const router = express.Router();
 router
 .get("/books", bookController.getAllBooks)
 .post("/books", bookController.postBooks)
+.put("/books/:id", bookController.putBooks)

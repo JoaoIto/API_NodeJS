@@ -11,12 +11,24 @@ export class bookController {
   };
 
   static postBooks = async (req, res) => {
-    let book = new books(req.body)
-    try{
-        await book.save()
-        res.send("Register books!")
-    }catch(error){
-        console.log(error)
+    let book = new books(req.body);
+    try {
+      await book.save();
+      res.send("Register books!");
+    } catch (error) {
+      console.log(error);
     }
-  }
+  };
+
+  static putBooks = async (req, res) => {
+    const id = req.params.id;
+    try {
+      books.findByIdAndUpdate(id, { $set: req.body });
+      res
+        .status(200)
+        .send({ message: "Books update!" });
+    } catch (err) {
+      res.status(500).send({ message: err.message });
+    }
+  };
 }
