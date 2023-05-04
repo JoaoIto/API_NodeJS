@@ -15,15 +15,6 @@ app.get("/", (req, res) => {
   res.status(200).send("Curso de Node");
 });
 
-app.get("/books", async (req, res) => {
-  try {
-    const resultBooks = await books.find();
-    res.status(200).json(resultBooks);
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-
 app.get("/books/:id", (req, res) => {
   let index = getBooks(req.params.id);
   res.json(books[index]);
