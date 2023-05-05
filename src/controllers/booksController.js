@@ -35,11 +35,11 @@ export class bookController {
   static putBooks = async (req, res) => {
     let id = req.params.id;
     try {
-      await books.findByIdAndUpdate(id, { $set: req.body });
+      const resultBooks = await books.findByIdAndUpdate(id, { $set: req.body });
       res
         .status(200)
         .send({ message: "Books update!" });
-        res.send(books)
+        res.send(resultBooks);
     } catch (error) {
       res.status(500).send({ message: error.message });
     }
