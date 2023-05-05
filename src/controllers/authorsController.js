@@ -10,21 +10,21 @@ export class AuthorController {
     }
   };
 
-  static getBook = async (req, res) => {
+  static getAuthor = async (req, res) => {
     let id = req.params.id;
 
     try {
       const resultAuthors = await authors.findById(id);
       res.status(200).send(resultAuthors);
     } catch (error) {
-      res.status(400).send({ message: `${error.message}Book not found!` });
+      res.status(400).send({ message: `${error.message}author not found!` });
     }
   };
 
   static postAuthors = async (req, res) => {
-    let book = new authors(req.body);
+    let author = new authors(req.body);
     try {
-      await book.save();
+      await author.save();
       res.send({ message: "Register authors!" });
     } catch (error) {
       console.log(error);
