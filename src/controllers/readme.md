@@ -7,10 +7,12 @@ A class controller for a functions or methods, in a books collection db.
 ```js
 static getAllBooks = async (req, res) => {
     try {
-      const resultBooks = await books.find();
+      const resultBooks = await books.find()
+      .populate("author")
+      .exec();
       res.status(200).json(resultBooks);
-    } catch (err) {
-      res.status(500).json(err);
+    } catch (error) {
+      res.status(500).json({message: `Error in server! ${error}`});
     }
   };
 
