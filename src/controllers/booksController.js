@@ -5,9 +5,10 @@ export class BookController {
     try {
       const resultBooks = await books.find()
       .populate("author")
-      .exec(res.status(200).json(resultBooks));
-    } catch (err) {
-      res.status(500).json(err);
+      .exec();
+      res.status(200).json(resultBooks);
+    } catch (error) {
+      res.status(500).json({message: `Error in server! ${error}`});
     }
   };
 
