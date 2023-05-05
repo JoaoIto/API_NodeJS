@@ -26,7 +26,7 @@ export class bookController {
     let book = new books(req.body);
     try {
       await book.save();
-      res.send("Register books!");
+      res.send({message: "Register books!"});
     } catch (error) {
       console.log(error);
     }
@@ -47,5 +47,14 @@ export class bookController {
 
   static deleteBooks = async (req, res) => {
     let id = req.params.id;
+
+    try {
+      await books.findByIdAndDelete(id);
+      res.status(200)
+      .send({ message: "Books delete!" });
+      this.getAllBooks
+    }catch(error){
+      res.status(500).send({ message: error.message});
+    };
   }
 }

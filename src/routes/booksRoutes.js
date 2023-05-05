@@ -7,3 +7,4 @@ router
 .get("/books/:id", bookController.getBook)
 .post("/books", bookController.postBooks)
 .put("/books/:id", bookController.putBooks)
+.delete("/books/:id", bookController.deleteBooks)
