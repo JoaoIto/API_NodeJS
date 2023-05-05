@@ -13,32 +13,3 @@ app.use(express.json());
 
 routes(app);
 
-app.get("/books/:id", (req, res) => {
-  let index = getBooks(req.params.id);
-  res.json(books[index]);
-});
-
-app.put("/books/:id", (req, res) => {
-  let index = getBooks(req.params.id);
-  books[index].title = req.body.title;
-  res.json(books);
-});
-
-app.delete("/books/:id", (req, res) => {
-  let { id } = req.params;
-  let index = getBooks(id);
-  books.splice(index, 1);
-  res.send(`book ${id} removido com sucesso`);
-});
-
-function getBooks(id) {
-  return books.findIndex((book) => book.id == id);
-}
-
-app.delete("books/:id", (req, res) => {
-  let { id } = req.params;
-  let index = getBooks(id);
-  books.splice(index, 1);
-  res.send(`book ${id} removido!`);
-  res.json(books);
-});
