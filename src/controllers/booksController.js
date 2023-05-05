@@ -10,6 +10,18 @@ export class bookController {
     }
   };
 
+  static getBook = async (req, res) => {
+    let id = req.params.id;
+
+    try {
+        const resultBooks = await books.findById(id)
+        res.status(200).send(resultBooks);
+    } 
+      catch(error){
+        res.status(400).send({message: `${error.message}Book not found!`})
+      } 
+  };
+
   static postBooks = async (req, res) => {
     let book = new books(req.body);
     try {
@@ -21,14 +33,19 @@ export class bookController {
   };
 
   static putBooks = async (req, res) => {
-    const id = req.params.id;
+    let id = req.params.id;
     try {
-      books.findByIdAndUpdate(id, { $set: req.body });
+      await books.findByIdAndUpdate(id, { $set: req.body });
       res
         .status(200)
         .send({ message: "Books update!" });
-    } catch (err) {
-      res.status(500).send({ message: err.message });
+        res.send(books)
+    } catch (error) {
+      res.status(500).send({ message: error.message });
     }
   };
+
+  static deleteBooks = async (req, res) => {
+    let id = req.params.id;
+  }
 }
