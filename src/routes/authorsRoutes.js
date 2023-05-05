@@ -1,8 +1,8 @@
 import express from "express";
-import { AuthorController } from "../controllers/booksController.js";
+import { AuthorController } from "../controllers/authorsController.js";
 
-export const router = express.Router();
-router
+export const authors = express.Router();
+authors
   .get("/authors", AuthorController.getAllAuthors)
   .get("/authors/:id", AuthorController.getAuthor)
   .post("/authors", AuthorController.postAuthors)
