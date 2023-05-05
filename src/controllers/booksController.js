@@ -1,6 +1,6 @@
 import { books } from "../models/Books.js";
 
-export class bookController {
+export class BookController {
   static getAllBooks = async (req, res) => {
     try {
       const resultBooks = await books.find();
